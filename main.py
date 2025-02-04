@@ -32,7 +32,8 @@ except Exception as e:
     print(f"Unexpected error: {e}")
     data = []
 
-print(dfs)
+combined_df = pd.concat(dfs, keys=dfs.keys()).reset_index(level=0).rename(columns={"level_0": "Rok"})
+print(combined_df)
 
 app = dash.Dash(__name__)
 
