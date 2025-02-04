@@ -1,5 +1,6 @@
 import requests
 import dash
+import pandas as pd
 from dash import html, dcc
 from requests.exceptions import Timeout, RequestException, HTTPError 
 
@@ -8,12 +9,16 @@ URLS = {
     "2024": "https://api.nbp.pl/api/cenyzlota/2024-01-01/2024-12-31/?format=json"
 }
 
+dfs = {}
 try:
     for year, url in URLS.items():
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
-    print(data)
+            df = pd.DataFrame(data)
+            df["data"] = pd.to_datetime(df["data"])
+            df.sort_values("data", inplace=True)
+            dfs[year] = df
 except Timeout:
     print(f"Error: Request timed out")
     data = []
@@ -26,6 +31,8 @@ except RequestException as req_err:
 except Exception as e:
     print(f"Unexpected error: {e}")
     data = []
+
+print(dfs)
 
 app = dash.Dash(__name__)
 
