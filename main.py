@@ -3,12 +3,17 @@ import dash
 from dash import html, dcc
 from requests.exceptions import Timeout, RequestException, HTTPError 
 
-URL = "https://api.nbp.pl/api/cenyzlota/2024-01-01/2024-12-31/?format=json"
+URLS = {
+    "2023": "https://api.nbp.pl/api/cenyzlota/2023-01-01/2023-12-31/?format=json",
+    "2024": "https://api.nbp.pl/api/cenyzlota/2024-01-01/2024-12-31/?format=json"
+}
 
 try:
-    response = requests.get(URL, timeout=10)
-    response.raise_for_status()
-    data = response.json()
+    for year, url in URLS.items():
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+    print(data)
 except Timeout:
     print(f"Error: Request timed out")
     data = []
