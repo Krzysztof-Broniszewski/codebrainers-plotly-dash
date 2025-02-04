@@ -77,7 +77,16 @@ def update_graph(selected_year):
             line=dict(color='#FFD700', width=2)
         ))
 
-    return {'data': traces}
+    layout = {
+        'title': 'Zmiany cen złota',
+        'xaxis': {'title': 'Data'},
+        'yaxis': {'title': 'Cena (PLN)'},
+        'plot_bgcolor': '#1f2c56',
+        'paper_bgcolor': '#1f2c56',
+        'font': {'color': 'white'}
+    }
+
+    return {'data': traces, 'layout': layout}
 
 if __name__ == '__main__':
     app.run_server(debug=True)
