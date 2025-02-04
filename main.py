@@ -39,7 +39,8 @@ print(combined_df)
 
 app = dash.Dash(__name__)
 
-app.layout = html.Div(children=[
+app.layout = html.Div(style={'backgroundColor': '#1f2c56', 'color': '#ffffff', 'padding': '20px'},
+    children=[
     html.H1(children='Ceny Złota w latach 2023-2024', style={'textAlign': 'center'}),
     html.Label("Wybierz rok:"),
     dcc.RadioItems(
@@ -49,9 +50,12 @@ app.layout = html.Div(children=[
             {'label': '2024', 'value': '2024'},
             {'label': 'Oba lata', 'value': 'all'}
         ],
-        value='all'
+        value='all',
+        inline=True,
+        style={'marginBottom': '20px'}
     ),
-    html.Div(children=[
+    html.Div(style={'border': '2px solid #FFD700', 'borderRadius': '15px', 'padding': '10px', 'backgroundColor': '#243a6b'},
+    children=[
         dcc.Graph(id='gold-price-graph')
     ])
 ])
@@ -79,8 +83,8 @@ def update_graph(selected_year):
 
     layout = {
         'title': 'Zmiany cen złota',
-        'xaxis': {'title': 'Data'},
-        'yaxis': {'title': 'Cena (PLN)'},
+        'xaxis': {'title': 'Data', 'gridcolor': '#4a5a8d', 'tickfont': {'color': 'white'}},
+        'yaxis': {'title': 'Cena (PLN)', 'gridcolor': '#4a5a8d', 'tickfont': {'color': 'white'}},
         'plot_bgcolor': '#1f2c56',
         'paper_bgcolor': '#1f2c56',
         'font': {'color': 'white'}
