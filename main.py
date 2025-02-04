@@ -1,7 +1,9 @@
 import requests
 import dash
 import pandas as pd
+import plotly.graph_objs as go
 from dash import html, dcc
+from dash.dependencies import Input, Output
 from requests.exceptions import Timeout, RequestException, HTTPError 
 
 URLS = {
@@ -53,6 +55,29 @@ app.layout = html.Div(children=[
         dcc.Graph(id='gold-price-graph')
     ])
 ])
+
+@app.callback(
+    Output('gold-price-graph', 'figure'),
+    [Input('year-selector', 'value')]
+)
+def update_graph(selected_year):
+    if selected_year == 'all':
+        filtered_df = combined_df
+    else:
+        filtered_df = combined_df[combined_df["Rok"] == selected_year]
+
+    traces = []
+    for year in filtered_df["Rok"].unique():
+        df_year = filtered_df[filtered_df["Rok"] == year]
+        traces.append(go.Scatter(
+            x=df_year["data"],
+            y=df_year["cena"],
+            mode='lines',
+            name=f'Cena złota {year}',
+            line=dict(color='#FFD700', width=2)
+        ))
+
+    return {'data': traces}
 
 if __name__ == '__main__':
     app.run_server(debug=True)
