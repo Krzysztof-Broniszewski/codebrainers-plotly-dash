@@ -9,17 +9,8 @@ data = response.json()
 
 app = dash.Dash(__name__)
 
-app.layout = html.Div([
-    html.H1("Podstawy Dash"),
-    html.P("Przykład wykorzystania komponentów HTML i interaktywnych."),
-    html.Ul([
-        html.Li("Pierwszy element listy"),
-        html.Li("Drugi element listy"),
-        html.Li("Trzeci element listy")
-    ]),
-    html.Button("Kliknij mnie", id="example-button"),
-    dcc.Input(id="example-input", type="text", placeholder="Wpisz coś..."),
-    dcc.Graph(id="example-graph")
+app.layout = html.Div(children=[
+    html.H1(children='Ceny Złota w latach 2023-2024', style={'textAlign': 'center'})
 ])
 
 if __name__ == '__main__':
