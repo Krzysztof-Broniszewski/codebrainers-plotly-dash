@@ -1,8 +1,10 @@
 # 🚦 Interaktywny wykres: Wypadki drogowe w Polsce (Dash + Colab)
 
-[![Open in Colab](https://img.shields.io/badge/Open%20in-Colab-orange?logo=googlecolab)](https://colab.research.google.com/drive/1C2317YWBbP6fwRyGjI2sA-WHDHhmWEDG?usp=sharing)
-[![Dash](https://img.shields.io/badge/Dash-latest-1f77b4)](#wymagania)
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](#wymagania)
+https://colab.research.google.com/github/Krzysztof-Broniszewski/codebrainers-plotly-dash/blob/main/plotly_dash_wypadki.ipynb
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
+  https://colab.research.google.com/github/Krzysztof-Broniszewski/codebrainers-plotly-dash/blob/main/plotly_dash_wypadki.ipynb
+)
 
 Aplikacja **Dash** rysująca interaktywne wykresy liczby wypadków, ofiar śmiertelnych i rannych w Polsce na podstawie danych z **Google Sheets**. 
 Kod jest przygotowany pod **Google Colab** – działa bez `JupyterDash`, korzystając z czystego **Dash** i proxy portu Colaba.
